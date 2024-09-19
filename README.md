@@ -66,23 +66,25 @@ Mindy[['Name', 'Track', 'Electronics', 'Average']]
 * Develop a visualization showcasing how the different features affect the average grade. Analyze whether factors such as chosen track, gender, or hometown influence a higher average score.
 
 ### Code Implementation and its Output
-``` python 
-#Use matplotlib.pyplot library as it will be required for making different graphs
-import matplotlib.pyplot as plt
-```
 
 #### Gender Bar Chart:
 * The bar chart below displays the average scores for male and female students, allowing for a comparison of their performance. This chart shows if one gender generally performs better than the other.
 
 ``` python
-#Create a bar plot for Average Score by Gender
-plt.figure(figsize=(10, 4))  #Set figure size
-plt.bar(board['Gender'], board['Average'])  #Plot average scores with Gender on x-axis
-plt.title('Average Score by Gender')  #Add title
-plt.xlabel('Gender')  #Label x-axis
-plt.ylabel('Average Score')  #Label y-axis
-plt.tight_layout()  #Adjust layout to prevent clipping
-plt.show()  #Display the plot
+# Use matplotlib.pyplot library as it is required to make different graphs
+import matplotlib.pyplot as plt
+
+# Calculate the average score for each student (on the fly)
+board['Average'] = board[['Math', 'GEAS', 'Electronics', 'Communication']].mean(axis=1)
+
+# Create a bar plot for Average Score by Gender
+plt.figure(figsize=(10, 4))  # Set the size of the figure
+plt.bar(board['Gender'], board['Average'])  # Plot the average scores calculated above
+plt.title('Average Score by Gender')  # Add a title
+plt.xlabel('Gender')  # Label the x-axis
+plt.ylabel('Average Score')  # Label the y-axis
+plt.show()  # Display the plot
+
 ```
 <img width="643" alt="Screenshot 2024-09-19 at 10 36 47 AM" src="https://github.com/user-attachments/assets/2e086b4e-fbb8-4c16-bd59-c1b772e33a91">
 
@@ -101,7 +103,7 @@ plt.show()  #Display the plot
 ```
 <img width="648" alt="Screenshot 2024-09-19 at 10 37 32 AM" src="https://github.com/user-attachments/assets/db05a6c4-9039-46d4-9d84-a03cee8f3b67">
 
-### Hometown Bar Chart:
+#### Hometown Bar Chart:
 * The bar chart below illustrates the average scores for students from different regions (Visayas, Luzon, Mindanao). It helps to see how performance varies by location, showing if students from a particular region tend to score higher on average than those from other areas.
 ```python
 #Create a bar plot for Average Score by Hometown
